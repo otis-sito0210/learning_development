@@ -4,28 +4,39 @@ This guide will help you set up the n8n Researcher Forms application in GitHub C
 
 ## ✅ What You'll Need (All Free)
 
-1. **n8n Cloud** (free tier - 2,500 executions/month)
+1. **n8n Self-Hosted** (Railway/Render - grátis com API incluída!)
 2. **PostgreSQL Database** (free tier from Supabase, Neon, or ElephantSQL)
 3. **GitHub Codespace** (you're already here!)
 
 ---
 
-## Step 1: Set Up n8n Cloud (2 minutes)
+## Step 1: Set Up n8n Self-Hosted (10 minutes)
 
-1. Go to **[https://n8n.io/](https://n8n.io/)**
-2. Click **"Get started free"**
-3. Sign up with email or GitHub
-4. After signup, you'll get your n8n instance URL:
-   - Example: `https://yourname.app.n8n.cloud`
-5. **Get your API key:**
-   - Click the **Settings** icon (gear) in the bottom left
-   - Go to **API**
-   - Click **"Create an API Key"**
-   - **Copy the API key** - you'll need this soon!
+⚠️ **Importante:** O n8n Cloud free tier **NÃO inclui acesso à API**. Você precisa usar n8n self-hosted!
 
-✅ **Save these for later:**
-- Your n8n URL: `https://________.app.n8n.cloud`
-- Your API key: `n8n_api_________________________________`
+**Opções para hospedar n8n gratuitamente com API:**
+
+### 🚀 Opção A: Railway.app (Recomendado)
+- $5 crédito grátis por mês
+- Deploy em 5 minutos
+- Sempre online
+
+### 🔷 Opção B: Render.com
+- Completamente grátis
+- Sleep após 15min de inatividade
+- Bom para desenvolvimento
+
+### 🐳 Opção C: Docker Local
+- Grátis, controle total
+- Precisa expor com ngrok para webhooks
+
+📖 **Siga o guia completo:** [N8N_SETUP.md](./N8N_SETUP.md)
+
+Vá para N8N_SETUP.md, escolha uma opção, configure seu n8n e volte aqui quando tiver:
+
+✅ **Salve estas informações:**
+- Sua URL do n8n: `https://________.railway.app` (ou render/local)
+- Sua API key: `n8n_api_________________________________`
 
 ---
 
