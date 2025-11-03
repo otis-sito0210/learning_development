@@ -29,6 +29,8 @@ export default async function Dashboard() {
     },
   });
 
+  type ProjectWithRelations = typeof projects[number];
+
   return (
     <div className="min-h-screen bg-gray-50">
       <nav className="bg-white shadow-sm">
@@ -72,7 +74,7 @@ export default async function Dashboard() {
           </div>
         ) : (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {projects.map((project) => (
+            {projects.map((project: ProjectWithRelations) => (
               <Link
                 key={project.id}
                 href={`/dashboard/projects/${project.id}`}
