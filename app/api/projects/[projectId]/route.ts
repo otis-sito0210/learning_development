@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
+import { getServerSession } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 
 export async function GET(
@@ -8,11 +7,7 @@ export async function GET(
   { params }: { params: { projectId: string } }
 ) {
   try {
-    const session = await getServerSession(authOptions);
-
-    if (!session) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
+    const session = await getServerSession();
 
     const project = await prisma.project.findFirst({
       where: {
@@ -51,11 +46,7 @@ export async function DELETE(
   { params }: { params: { projectId: string } }
 ) {
   try {
-    const session = await getServerSession(authOptions);
-
-    if (!session) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
+    const session = await getServerSession();
 
     const project = await prisma.project.findFirst({
       where: {
