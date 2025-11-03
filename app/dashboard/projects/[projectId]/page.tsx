@@ -41,6 +41,8 @@ export default async function ProjectPage({
     notFound();
   }
 
+  type FormWithRelations = typeof project.forms[number];
+
   return (
     <div className="min-h-screen bg-gray-50">
       <nav className="bg-white shadow-sm">
@@ -92,7 +94,7 @@ export default async function ProjectPage({
           </div>
         ) : (
           <div className="space-y-4">
-            {project.forms.map((form) => (
+            {project.forms.map((form: FormWithRelations) => (
               <div
                 key={form.id}
                 className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition"
