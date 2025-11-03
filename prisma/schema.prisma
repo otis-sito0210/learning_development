@@ -3,10 +3,11 @@
 
 generator client {
   provider = "prisma-client-js"
+  engineType = "wasm"
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
@@ -30,12 +31,12 @@ model Account {
   type              String
   provider          String
   providerAccountId String
-  refresh_token     String? @db.Text
-  access_token      String? @db.Text
+  refresh_token     String?
+  access_token      String?
   expires_at        Int?
   token_type        String?
   scope             String?
-  id_token          String? @db.Text
+  id_token          String?
   session_state     String?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -75,8 +76,8 @@ model Form {
   id                 String   @id @default(cuid())
   projectId          String
   name               String
-  interviewTopic     String   @db.Text
-  systemPrompt       String   @db.Text
+  interviewTopic     String
+  systemPrompt       String
   initialQuestion    String   @default("What is your name?")
   formTitle          String?
   formDescription    String?
@@ -96,8 +97,8 @@ model Response {
   id         String   @id @default(cuid())
   formId     String
   sessionId  String
-  question   String   @db.Text
-  answer     String   @db.Text
+  question   String
+  answer     String
   type       String   @default("next_question") // next_question, stop_interview
   createdAt  DateTime @default(now())
 
