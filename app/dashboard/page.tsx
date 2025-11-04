@@ -1,16 +1,9 @@
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
-import { redirect } from "next/navigation";
+import { getServerSession } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
-import { SignOutButton } from "@/components/SignOutButton";
 
 export default async function Dashboard() {
-  const session = await getServerSession(authOptions);
-
-  if (!session) {
-    redirect("/");
-  }
+  const session = await getServerSession();
 
   const projects = await prisma.project.findMany({
     where: {
@@ -40,7 +33,6 @@ export default async function Dashboard() {
           </h1>
           <div className="flex items-center gap-4">
             <span className="text-sm text-gray-600">{session.user.email}</span>
-            <SignOutButton />
           </div>
         </div>
       </nav>

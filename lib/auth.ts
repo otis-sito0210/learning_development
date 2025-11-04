@@ -1,26 +1,25 @@
-import { NextAuthOptions } from "next-auth";
-import GoogleProvider from "next-auth/providers/google";
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import { prisma } from "@/lib/prisma";
+// Mock authentication for development
+// Returns a hardcoded user to bypass Google OAuth
 
-export const authOptions: NextAuthOptions = {
-  adapter: PrismaAdapter(prisma),
-  providers: [
-    GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID || "",
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
-    }),
-  ],
-  callbacks: {
-    session: async ({ session, user }) => {
-      if (session?.user) {
-        session.user.id = user.id;
-      }
-      return session;
-    },
-  },
-  pages: {
-    signIn: "/",
-  },
-  secret: process.env.NEXTAUTH_SECRET,
-};
+export interface MockUser {
+  id: string;
+  email: string;
+  name: string;
+  image?: string;
+}
+
+export async function getMockUser(): Promise<MockUser> {
+  return {
+    id: "dev-user-123",
+    email: "developer@example.com",
+    name: "Developer User",
+    image: undefined,
+  };
+}
+
+export async function getServerSession() {
+  // Always return a mock session for development
+  return {
+    user: await getMockUser(),
+  };
+}

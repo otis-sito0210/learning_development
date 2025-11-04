@@ -1,6 +1,4 @@
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
-import { redirect } from "next/navigation";
+import { getServerSession } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -10,11 +8,7 @@ export default async function ProjectPage({
 }: {
   params: { projectId: string };
 }) {
-  const session = await getServerSession(authOptions);
-
-  if (!session) {
-    redirect("/");
-  }
+  const session = await getServerSession();
 
   const project = await prisma.project.findFirst({
     where: {
